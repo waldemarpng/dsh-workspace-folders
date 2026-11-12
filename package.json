@@ -1,0 +1,65 @@
+{
+  "name": "dsh-workspace-folders",
+  "version": "0.1.0",
+  "description": "Multi-folder workspaces for DeepSeek Harness: pick several folders, get a new workspace where the agent can read and write all of them",
+  "author": "waldemarpng",
+  "homepage": "https://github.com/waldemarpng/dsh-workspace-folders#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waldemarpng/dsh-workspace-folders.git"
+  },
+  "bugs": {
+    "url": "https://github.com/waldemarpng/dsh-workspace-folders/issues"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "test",
+    "scripts",
+    "cordis.patch.yml",
+    "CHANGELOG.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "check": "for f in lib/*.js; do node --check \"$f\" || exit 1; done",
+    "test": "node --test test/*.test.js",
+    "guard": "node scripts/guard.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "e2e": "node scripts/e2e.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "workspace",
+    "folders",
+    "multi-root"
+  ],
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-modules",
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-ui-workspace",
+        "@deepseek-ai/dsh-client-ui-context-menu",
+        "@deepseek-ai/dsh-api-workspace-controller"
+      ],
+      "platform": "web"
+    },
+    "manifestVersion": 1
+  }
+}
